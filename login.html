@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLOW SALON - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'salon-pink': '#FF4D8D',
+              'salon-gold': '#D4AF37',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @keyframes pageLoad {
+        from { opacity: 0; transform: translateY(35px) scale(.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+     .animate-page { animation: pageLoad.8s cubic-bezier(.22,1,.36,1) both; }
+     .active-btn { color: #FF4D8D; background: linear-gradient(90deg, rgba(255,77,141,.13), transparent); }
+     .active-btn::before { content: ""; position: absolute; left: 0; top: 15px; bottom: 15px; width: 4px; border-radius: 0 10px 10px 0; background: #FF4D8D; box-shadow: 0 0 20px rgba(255,77,141,.75); }
+    </style>
+</head>
+<body class="min-h-screen bg-[#030303] text-white font-sans flex items-center justify-center p-6 overflow-x-hidden"
+      style="background: radial-gradient(circle at 15% 20%, rgba(255, 77, 141,.10), transparent 30%), radial-gradient(circle at 85% 80%, rgba(212, 175, 55,.07), transparent 30%), #030303;">
+
+    <div class="w-full max-w-[1180px] h-[700px] overflow-hidden rounded-[28px] bg-[#070707] border-white/10 shadow-[0_35px_100px_rgba(0,0,0,.85),0_0_80px_rgba(255,77,141,.04)] animate-page">
+        <div class="w-full h-full flex max-[700px]:flex-col">
+
+            <!-- Sidebar -->
+            <aside class="w-[190px] min-w-[190px] h-full bg-gradient-to-b from-[#080808] to-[#030303] border-r border-white/8 flex-col items-center pt-9 max-[700px]:w-full max-[700px]:h-[78px] max-[700px]:flex-row max-[700px]:justify-between max-[700px]:p-3 max-[700px]:border-b max-[700px]:border-r-0">
+                <div class="text-center mb-[70px] max-[700px]:mb-0 max-[700px]:flex max-[700px]:items-center max-[700px]:gap-3">
+                    <div class="w-[58px] h-[58px] rounded-[20%] bg-gradient-to-br from-salon-pink to-salon-gold flex items-center justify-center mx-auto text-[26px] shadow-[0_0_35px_rgba(255,77,141,.25)] max-[700px]:w-[45px] max-[700px]:h-[45px] max-[700px]:text-[20px]">💄</div>
+                    <h2 class="text-[16px] mt-3 tracking-[1.5px] max-[700px]:mt-0 max-[700px]:text-[14px]">GLOW <span class="text-salon-pink">SALON</span></h2>
+                </div>
+
+                <div class="w-full max-[700px]:w-auto max-[700px]:flex">
+                    <button type="button" id="loginTab" onclick="switchAuth('login')"
+                        class="w-full h-[105px] border-0 outline-none bg-transparent text-gray-500 cursor-pointer flex-col items-center justify-center gap-2 relative transition-all duration-300 hover:text-white hover:bg-gradient-to-r hover:from-[rgba(255,77,141,.08)] hover:to-transparent active-btn max-[700px]:w-[70px] max-[700px]:h-[65px]">
+                        <div class="text-[25px] max-[700px]:text-[19px]">✨</div>
+                        <span class="text-[12px] tracking-[.4px] max-[700px]:text-[9px]">Sign In</span>
+                    </button>
+
+                    <button type="button" id="registerTab" onclick="switchAuth('register')"
+                        class="w-full h-[105px] border-0 outline-none bg-transparent text-gray-500 cursor-pointer flex flex-col items-center justify-center gap-2 relative transition-all duration-300 hover:text-white hover:bg-gradient-to-r hover:from-[rgba(255,77,141,.08)] hover:to-transparent max-[700px]:w-[70px] max-[700px]:h-[65px]">
+                        <div class="text-[25px] max-[700px]:text-[19px]">💅</div>
+                        <span class="text-[12px] tracking-[.4px] max-[700px]:text-[9px]">Sign Up</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Content -->
+            <div class="flex-1 h-full relative overflow-hidden" id="contentWindow">
+
+                <!-- Image Side -->
+                <div class="absolute left-0 top-0 w-[46%] h-full overflow-hidden max-[700px]:hidden">
+                    <div id="loginImage" class="absolute inset-5 rounded-3xl overflow-hidden bg-cover bg-center transition-all duration-1000 ease-[cubic-bezier(.77,0,.18,1)] z-10 opacity-100 translate-y-0"
+                         style="background-image: linear-gradient(180deg, rgba(0,0,0,.03) 20%, rgba(0,0,0,.15) 45%, rgba(0,0,0,.96) 100%), url('https://images.unsplash.com/photo-1522337360788-4593d9b0b131?auto=format&fit=crop&w=1000&q=90');">
+                        <div class="absolute left-9 right-7 bottom-9 z-10">
+                            <small class="block text-salon-pink text-[11px] font-bold tracking-[3px] mb-3">GLOW SALON</small>
+                            <h1 class="text-[39px] leading-[1.05] tracking-[-.8px]">Reveal Your <span class="text-salon-pink">Beauty</span></h1>
+                            <p class="mt-4 text-[#aaa] text-[13px] leading-[1.65] max-w-[390px]">Luxury treatments. Expert stylists. Your glow starts here.</p>
+                        </div>
+                    </div>
+
+                    <div id="registerImage" class="absolute inset-5 rounded-3xl overflow-hidden bg-cover bg-center transition-all duration-1000 ease-[cubic-bezier(.77,0,.18,1)] z-0 opacity-0 -translate-y-[115%]"
+                         style="background-image: linear-gradient(180deg, rgba(0,0,0,.03) 20%, rgba(0,0,0,.15) 45%, rgba(0,0,0,.96) 100%), url('https://images.unsplash.com/photo-1560869713-7d0a294a6ebd?auto=format&fit=crop&w=1000&q=90');">
+                        <div class="absolute left-9 right-7 bottom-9 z-10">
+                            <small class="block text-salon-pink text-[11px] font-bold tracking-[3px] mb-3">JOIN US</small>
+                            <h1 class="text-[39px] leading-[1.05] tracking-[-.8px]">Start Your <span class="text-salon-pink">GLOW</span> Journey</h1>
+                            <p class="mt-4 text-[#aaa] text-[13px] leading-[1.65] max-w-[390px]">Book appointments, track treatments, and get exclusive offers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Side -->
+                <div class="absolute right-0 top-0 w-[54%] h-full overflow-hidden max-[700px]:w-full max-[700px]:h-[calc(100%-78px)]">
+
+                    <!-- Login Form -->
+                    <div id="loginForm" class="absolute inset-0 p-[50px] flex-col justify-center transition-all duration-700 ease-[cubic-bezier(.77,0,.18,1)] z-10 opacity-100 translate-y-0 max-[700px]:p-[30px_25px]">
+                        <div class="text-[#777] text-[12px] mb-[27px]">
+                            Don't have an account?
+                            <a href="#" onclick="switchAuth('register'); return false;" class="text-salon-pink font-bold hover:text-[#ff6fa3] transition">Sign Up</a>
+                        </div>
+
+                        <h1 class="text-[36px] leading-[1.1] mb-2 tracking-[-.7px]">Welcome <span class="text-salon-pink">Back.</span></h1>
+                        <p class="text-[#666] text-[13px] mb-7">Please enter your credentials.</p>
+
+                        <form onsubmit="handleLogin(event)">
+                            <div class="mb-[17px]">
+                                <label class="block text-[#d0d0d0] text-[12px] mb-2">Email</label>
+                                <div class="relative">
+                                    <input type="email" id="loginEmail" placeholder="Enter Your Email" required
+                                        class="w-full h-[54px] px-4 pr-12 text-white outline-none border-white/12 rounded-xl bg-white/[.045] backdrop-blur-[18px] transition duration-300 hover:border-white/20 focus:border-salon-pink focus:bg-[rgba(255,77,141,.04)] focus:shadow-[0_0_0_3px_rgba(255,77,141,.06)] placeholder:text-[#555]">
+                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[#666]">✉</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-[17px]">
+                                <label class="block text-[#d0d0d0] text-[12px] mb-2">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="loginPassword" placeholder="Enter Your Password" required
+                                        class="w-full h-[54px] px-4 pr-12 text-white outline-none border border-white/12 rounded-xl bg-white/[.045] backdrop-blur-[18px] transition duration-300 hover:border-white/20 focus:border-salon-pink focus:bg-[rgba(255,77,141,.04)] focus:shadow-[0_0_0_3px_rgba(255,77,141,.06)] placeholder:text-[#555]">
+                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[#666] cursor-pointer hover:text-salon-pink" onclick="togglePassword('loginPassword', this)">◉</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between my-1 mb-[21px] text-[#707070] text-[11px]">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="accent-salon-pink cursor-pointer"> Remember me
+                                </label>
+                                <a href="#" class="text-salon-pink">Forgot Password?</a>
+                            </div>
+
+                            <p class="text-[#555] text-[10px] leading-[1.6] mb-[19px]">By clicking Sign In you agree to our <span class="text-salon-pink">terms</span> and <span class="text-salon-pink">privacy policy</span>.</p>
+
+                            <button type="submit" class="w-full h-[55px] border-0 outline-none rounded-xl text-white text-[13px] font-bold tracking-[.3px] cursor-pointer relative overflow-hidden bg-gradient-to-br from-salon-pink to-[#a8005a] shadow-[0_12px_30px_rgba(255,77,141,.17)] transition duration-300 hover:-translate-y-0.5 hover:from-[#ff6fa3] hover:to-[#d0007a] hover:shadow-[0_16px_40px_rgba(255,77,141,.30)] active:scale-[.98]">
+                                Sign In
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Register Form -->
+                    <div id="registerForm" class="absolute inset-0 p-[50px] flex flex-col justify-center transition-all duration-700 ease-[cubic-bezier(.77,0,.18,1)] z-0 opacity-0 -translate-y-[115%] max-[700px]:p-[30px_25px]">
+                        <div class="text-[#777] text-[12px] mb-[27px]">
+                            Already have an account?
+                            <a href="#" onclick="switchAuth('login'); return false;" class="text-salon-pink font-bold hover:text-[#ff6fa3] transition">Sign In</a>
+                        </div>
+
+                        <h1 class="text-[36px] leading-[1.1] mb-2 tracking-[-.7px]">Join <span class="text-salon-pink">GLOW SALON</span></h1>
+                        <p class="text-[#666] text-[13px] mb-7">Create your account and start booking.</p>
+
+                        <form onsubmit="handleRegister(event)">
+                            <div class="mb-[17px]">
+                                <label class="block text-[#d0d0d0] text-[12px] mb-2">Full Name</label>
+                                <div class="relative">
+                                    <input type="text" id="regName" placeholder="Your name" required
+                                        class="w-full h-[54px] px-4 pr-12 text-white outline-none border-white/12 rounded-xl bg-white/[.045] backdrop-blur-[18px] transition duration-300 hover:border-white/20 focus:border-salon-pink focus:bg-[rgba(255,77,141,.04)] focus:shadow-[0_0_0_3px_rgba(255,77,141,.06)] placeholder:text-[#555]">
+                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[#666]">👤</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-[17px]">
+                                <label class="block text-[#d0d0d0] text-[12px] mb-2">Email</label>
+                                <div class="relative">
+                                    <input type="email" id="regEmail" placeholder="Your Email" required
+                                        class="w-full h-[54px] px-4 pr-12 text-white outline-none border border-white/12 rounded-xl bg-white/[.045] backdrop-blur-[18px] transition duration-300 hover:border-white/20 focus:border-salon-pink focus:bg-[rgba(255,77,141,.04)] focus:shadow-[0_0_0_3px_rgba(255,77,141,.06)] placeholder:text-[#555]">
+                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[#666]">✉</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-[17px]">
+                                <label class="block text-[#d0d0d0] text-[12px] mb-2">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="registerPassword" placeholder="Create password" required
+                                        class="w-full h-[54px] px-4 pr-12 text-white outline-none border-white/12 rounded-xl bg-white/[.045] backdrop-blur-[18px] transition duration-300 hover:border-white/20 focus:border-salon-pink focus:bg-[rgba(255,77,141,.04)] focus:shadow-[0_0_0_3px_rgba(255,77,141,.06)] placeholder:text-[#555]">
+                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[#666] cursor-pointer hover:text-salon-pink" onclick="togglePassword('registerPassword', this)">◉</span>
+                                </div>
+                            </div>
+
+                            <p class="text-[#555] text-[10px] leading-[1.6] mb-[19px]">By creating an account you agree to our <span class="text-salon-pink">terms</span> and <span class="text-salon-pink">privacy policy</span>.</p>
+
+                            <button type="submit" class="w-full h-[55px] border-0 outline-none rounded-xl text-white text-[13px] font-bold tracking-[.3px] cursor-pointer relative overflow-hidden bg-gradient-to-br from-salon-pink to-[#a8005a] shadow-[0_12px_30px_rgba(255,77,141,.17)] transition duration-300 hover:-translate-y-0.5 hover:from-[#ff6fa3] hover:to-[#d0007a] hover:shadow-[0_16px_40px_rgba(255,77,141,.30)] active:scale-[.98]">
+                                Create Account
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    let currentAuth = 'login';
+    let isAnimating = false;
+    const contentWindow = document.getElementById('contentWindow');
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+
+    function switchAuth(type) {
+        if (type === currentAuth || isAnimating) return;
+        isAnimating = true;
+
+        if (type === 'register') {
+            loginTab.classList.remove('active-btn');
+            registerTab.classList.add('active-btn');
+            document.getElementById('loginImage').style.transform = 'translateY(115%)';
+            document.getElementById('loginImage').style.opacity = '0';
+            document.getElementById('registerImage').style.transform = 'translateY(0)';
+            document.getElementById('registerImage').style.opacity = '1';
+            document.getElementById('loginForm').style.transform = 'translateY(115%)';
+            document.getElementById('loginForm').style.opacity = '0';
+            document.getElementById('registerForm').style.transform = 'translateY(0)';
+            document.getElementById('registerForm').style.opacity = '1';
+        } else {
+            registerTab.classList.remove('active-btn');
+            loginTab.classList.add('active-btn');
+            document.getElementById('registerImage').style.transform = 'translateY(115%)';
+            document.getElementById('registerImage').style.opacity = '0';
+            document.getElementById('loginImage').style.transform = 'translateY(0)';
+            document.getElementById('loginImage').style.opacity = '1';
+            document.getElementById('registerForm').style.transform = 'translateY(115%)';
+            document.getElementById('registerForm').style.opacity = '0';
+            document.getElementById('loginForm').style.transform = 'translateY(0)';
+            document.getElementById('loginForm').style.opacity = '1';
+        }
+        currentAuth = type;
+        setTimeout(() => { isAnimating = false }, 1100);
+    }
+
+    function togglePassword(inputId, icon) {
+        const input = document.getElementById(inputId);
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.innerHTML = '◎';
+        } else {
+            input.type = 'password';
+            icon.innerHTML = '◉';
+        }
+    }
+
+    // Basic form handling - no backend
+    function handleLogin(e) {
+        e.preventDefault();
+        alert('Login clicked! Email: ' + document.getElementById('loginEmail').value);
+    }
+
+    function handleRegister(e) {
+        e.preventDefault();
+        alert('Account created for: ' + document.getElementById('regName').value);
+    }
+</script>
+
+</body>
+</html>
