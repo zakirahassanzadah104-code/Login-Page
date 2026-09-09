@@ -27,13 +27,13 @@
      .active-btn::before { content: ""; position: absolute; left: 0; top: 15px; bottom: 15px; width: 4px; border-radius: 0 10px 10px 0; background: #FF4D8D; box-shadow: 0 0 20px rgba(255,77,141,.75); }
     </style>
 </head>
-<body class="min-h-screen bg-[#030303] text-white font-sans flex items-center justify-center p-6 overflow-x-hidden"
+<body class="min-h-screen bg-gray-200 text-white font-sans flex items-center justify-center p-6 overflow-x-hidden"
       style="background: radial-gradient(circle at 15% 20%, rgba(255, 77, 141,.10), transparent 30%), radial-gradient(circle at 85% 80%, rgba(212, 175, 55,.07), transparent 30%), #030303;">
 
     <div class="w-full max-w-[1180px] h-[700px] overflow-hidden rounded-[28px] bg-[#070707] border-white/10 shadow-[0_35px_100px_rgba(0,0,0,.85),0_0_80px_rgba(255,77,141,.04)] animate-page">
         <div class="w-full h-full flex max-[700px]:flex-col">
 
-            <!-- Sidebar -->
+            
             <aside class="w-[190px] min-w-[190px] h-full bg-gradient-to-b from-[#080808] to-[#030303] border-r border-white/8 flex-col items-center pt-9 max-[700px]:w-full max-[700px]:h-[78px] max-[700px]:flex-row max-[700px]:justify-between max-[700px]:p-3 max-[700px]:border-b max-[700px]:border-r-0">
                 <div class="text-center mb-[70px] max-[700px]:mb-0 max-[700px]:flex max-[700px]:items-center max-[700px]:gap-3">
                     <div class="w-[58px] h-[58px] rounded-[20%] bg-gradient-to-br from-salon-pink to-salon-gold flex items-center justify-center mx-auto text-[26px] shadow-[0_0_35px_rgba(255,77,141,.25)] max-[700px]:w-[45px] max-[700px]:h-[45px] max-[700px]:text-[20px]">💄</div>
@@ -55,10 +55,10 @@
                 </div>
             </aside>
 
-            <!-- Content -->
+            
             <div class="flex-1 h-full relative overflow-hidden" id="contentWindow">
 
-                <!-- Image Side -->
+            
                 <div class="absolute left-0 top-0 w-[46%] h-full overflow-hidden max-[700px]:hidden">
                     <div id="loginImage" class="absolute inset-5 rounded-3xl overflow-hidden bg-cover bg-center transition-all duration-1000 ease-[cubic-bezier(.77,0,.18,1)] z-10 opacity-100 translate-y-0"
                          style="background-image: linear-gradient(180deg, rgba(0,0,0,.03) 20%, rgba(0,0,0,.15) 45%, rgba(0,0,0,.96) 100%), url('https://images.unsplash.com/photo-1522337360788-4593d9b0b131?auto=format&fit=crop&w=1000&q=90');">
@@ -79,10 +79,10 @@
                     </div>
                 </div>
 
-                <!-- Form Side -->
+                
                 <div class="absolute right-0 top-0 w-[54%] h-full overflow-hidden max-[700px]:w-full max-[700px]:h-[calc(100%-78px)]">
 
-                    <!-- Login Form -->
+                    
                     <div id="loginForm" class="absolute inset-0 p-[50px] flex-col justify-center transition-all duration-700 ease-[cubic-bezier(.77,0,.18,1)] z-10 opacity-100 translate-y-0 max-[700px]:p-[30px_25px]">
                         <div class="text-[#777] text-[12px] mb-[27px]">
                             Don't have an account?
@@ -126,7 +126,7 @@
                         </form>
                     </div>
 
-                    <!-- Register Form -->
+                    
                     <div id="registerForm" class="absolute inset-0 p-[50px] flex flex-col justify-center transition-all duration-700 ease-[cubic-bezier(.77,0,.18,1)] z-0 opacity-0 -translate-y-[115%] max-[700px]:p-[30px_25px]">
                         <div class="text-[#777] text-[12px] mb-[27px]">
                             Already have an account?
@@ -226,7 +226,7 @@
         }
     }
 
-    // Basic form handling - no backend
+    
     function handleLogin(e) {
         e.preventDefault();
         alert('Login clicked! Email: ' + document.getElementById('loginEmail').value);
